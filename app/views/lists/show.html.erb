@@ -1,0 +1,15 @@
+<h2>title</h2>
+<%=@list.title%>
+
+<h2>text</h2>
+<%=@list.body%><br>
+
+<h2>phpto</h2>
+    <%if @list.image.attached?%>
+        <%=image_tag @list.image,size: "300x300"%>
+    <%else%>
+        <%=image_tag 'no_image',size: "300x300"%>
+    <%end%><br>
+
+<%=link_to 'edit',edit_list_path(@list.id)%>
+<%=link_to 'delete',destroy_list_path(@list.id),method: :delete,'data-confirm'=>'really?'%>
