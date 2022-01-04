@@ -4,9 +4,12 @@ class ListsController < ApplicationController
   end
   
   def create
-    list=List.new(list_params)
-    list.save
-    redirect_to list_path
+    @list=List.new(list_params)
+      if @list.save
+        redirect_to list_path
+      else
+        render :new
+      end
   end
 
   def index
@@ -22,9 +25,12 @@ class ListsController < ApplicationController
   end
   
   def update
-    list=List.find(params[:id])
-    list.update(list_params)
-    redirect_to list_path
+    @list=List.find(params[:id])
+      if @list.update(list_params)
+        redirect_to list_path
+      else
+        render :edit
+      end
   end
   
   def destroy
